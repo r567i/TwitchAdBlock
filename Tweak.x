@@ -239,21 +239,13 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 
 %hook modMethod
-- (id)RightLeadingText {
-  %orig;
-  [self setHidden:YES];
-}
-- (id)RightLeadingAttributedText {
-  %orig;
-  [self setHidden:YES];
-}
 - (void)setRightLeadingText:(id)arg {
   [self setHidden:YES];
 }
 - (void)setRightLeadingAttributedText:(id)arg {
   [self setHidden:YES];
 }
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
   %orig;
   [self setHidden:YES];
 }
