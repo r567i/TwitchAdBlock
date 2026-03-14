@@ -21,3 +21,9 @@
 @interface _TtC6Twitch27AssetResourceLoaderDelegate : NSObject <AVAssetResourceLoaderDelegate>
 - (BOOL)handleLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest;
 @end
+
+@interface TWThemeableView : UIView
+@end
+
+@interface Twitch.LiveDotIndicatorView : TWThemeableView
+@end

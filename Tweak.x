@@ -237,3 +237,12 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
     [tweakDefaults setBool:NO forKey:@"TWAdBlockCustomProxyEnabled"];
   assetResourceLoaderDelegate = [[TWAdBlockAssetResourceLoaderDelegate alloc] init];
 }
+
+%hook Twitch.LiveDotIndicatorView:(id)arg
+- (void)setRightLeadingText {
+  self.hidden = YES;
+}
+- (void)setRightLeadingAttributedText:(id)arg {
+  self.hidden = YES;
+}
+%end
