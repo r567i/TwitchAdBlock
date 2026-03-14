@@ -238,11 +238,15 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   assetResourceLoaderDelegate = [[TWAdBlockAssetResourceLoaderDelegate alloc] init];
 }
 
-%hook Twitch.LiveDotIndicatorView:(id)arg
-- (void)setRightLeadingText {
+%hook modMethod
+- (void)setRightLeadingText:(id)arg {
   self.hidden = YES;
 }
 - (void)setRightLeadingAttributedText:(id)arg {
   self.hidden = YES;
 }
 %end
+
+%ctor {
+    %init(modMethod = objc_getClass("Twitch.LiveDotIndicatorView"));
+}
