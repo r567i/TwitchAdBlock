@@ -240,10 +240,12 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 
 %hook modMethod
 - (void)setRightLeadingText:(id)arg {
-  self.hidden = YES;
+  [self setHidden:YES]
+  // self.hidden = YES;
 }
 - (void)setRightLeadingAttributedText:(id)arg {
-  self.hidden = YES;
+  [self setHidden:YES]
+  // self.hidden = YES;
 }
 %end
 

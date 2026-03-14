@@ -22,8 +22,8 @@
 - (BOOL)handleLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest;
 @end
 
-@interface TWThemeableView : UIView
-@end
+// @interface TWThemeableView : UIView
+// @end
 
-@interface Twitch.LiveDotIndicatorView : TWThemeableView
-@end
+// @interface Twitch.LiveDotIndicatorView : TWThemeableView
+// @end
