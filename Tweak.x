@@ -285,6 +285,9 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   [self setHidden:YES];
   %orig;
   [self setHidden:YES];
+  for (UIView *v in self.subviews) {
+    NSLog(@"check_class_name: %s", class_getName(object_getClass(v)));
+  }
 }
 - (void)layoutIfNeeded {
   [self setHidden:YES];
@@ -294,12 +297,6 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 - (void)updateConstraints {
   [self setHidden:YES];
   %orig;
-  [self setHidden:YES];
-}
-
-- (void)didAddSubviews:(id)subview {
-  %orig(subview);
-  NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
   [self setHidden:YES];
 }
 %end
