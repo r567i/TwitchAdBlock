@@ -313,11 +313,12 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 // }
 
 %hook UIView
-
 - (void)didAddSubview:(UIView *)subview {
     %orig(subview);
     NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
     if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"]) {
         subview.hidden = YES;
+        [subview setHidden:YES];
     }
 }
+%end
