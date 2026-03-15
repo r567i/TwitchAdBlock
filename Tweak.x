@@ -239,24 +239,24 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 
 %hook modMethod
-- (id)RightLeadingText {
-  [self setHidden:YES];
-  return %orig;
-}
-- (id)RightLeadingAttributedText {
-  [self setHidden:YES];
-  return %orig;
-}
-- (void)setRightLeadingText:(id)arg {
-  [self setHidden:YES];
-}
-- (void)setRightLeadingAttributedText:(id)arg {
-  [self setHidden:YES];
-}
-- (id)initWithFrame:(CGRect)frame {
-  [self setHidden:YES];
-  return %orig;
-}
+// - (id)RightLeadingText {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (id)RightLeadingAttributedText {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (void)setRightLeadingText:(id)arg {
+//   [self setHidden:YES];
+// }
+// - (void)setRightLeadingAttributedText:(id)arg {
+//   [self setHidden:YES];
+// }
+// - (id)initWithFrame:(CGRect)frame {
+//   [self setHidden:YES];
+//   return %orig;
+// }
 // - (void)didMoveToSuperview {
 //   [self setHidden:YES];
 //   // %orig;
@@ -267,7 +267,8 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 // }
 - (void)drawRect:(CGRect)rect {
   [self setHidden:YES];
-  // %orig;
+  %orig;
+  [self setHidden:YES];
 }
 // - (void)layoutIfNeeded {
 //   [self setHidden:YES];
