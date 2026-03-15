@@ -239,59 +239,59 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 
 %hook modMethod
-- (id)RightLeadingText {
-  [self setHidden:YES];
-  return %orig;
-}
-- (id)RightLeadingAttributedText {
-  [self setHidden:YES];
-  return %orig;
-}
-- (void)setRightLeadingText:(id)arg {
-  [self setHidden:YES];
-}
-- (void)setRightLeadingAttributedText:(id)arg {
-  [self setHidden:YES];
-}
-- (id)LeftLeadingText {
-  [self setHidden:YES];
-  return %orig;
-}
-- (id)LeftLeadingAttributedText {
-  [self setHidden:YES];
-  return %orig;
-}
-- (void)setLeftLeadingText:(id)arg {
-  [self setHidden:YES];
-}
-- (void)setLeftLeadingAttributedText:(id)arg {
-  [self setHidden:YES];
-}
+// - (id)RightLeadingText {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (id)RightLeadingAttributedText {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (void)setRightLeadingText:(id)arg {
+//   [self setHidden:YES];
+// }
+// - (void)setRightLeadingAttributedText:(id)arg {
+//   [self setHidden:YES];
+// }
+// - (id)LeftLeadingText {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (id)LeftLeadingAttributedText {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (void)setLeftLeadingText:(id)arg {
+//   [self setHidden:YES];
+// }
+// - (void)setLeftLeadingAttributedText:(id)arg {
+//   [self setHidden:YES];
+// }
 // - (id)initWithFrame:(CGRect)frame {
 //   [self setHidden:YES];
 //   return %orig;
 // }
-// - (void)didMoveToSuperview {
-//   [self setHidden:YES];
-//   // %orig;
-// }
-// - (void)layoutSubviews {
-//   [self setHidden:YES];
-//   // %orig;
-// }
-// - (void)drawRect:(CGRect)rect {
-//   [self setHidden:YES];
-//   %orig;
-//   [self setHidden:YES];
-// }
-// - (void)layoutIfNeeded {
-//   [self setHidden:YES];
-//   // %orig;
-// }
-// - (void)updateConstraints {
-//   [self setHidden:YES];
-//   // %orig;
-// }
+- (void)didMoveToSuperview {
+  [self setHidden:YES];
+  // %orig;
+}
+- (void)layoutSubviews {
+  [self setHidden:YES];
+  // %orig;
+}
+- (void)drawRect:(CGRect)rect {
+  [self setHidden:YES];
+  %orig;
+  [self setHidden:YES];
+}
+- (void)layoutIfNeeded {
+  [self setHidden:YES];
+  // %orig;
+}
+- (void)updateConstraints {
+  [self setHidden:YES];
+  // %orig;
+}
 %end
 
 %ctor {
