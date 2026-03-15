@@ -238,7 +238,7 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   assetResourceLoaderDelegate = [[TWAdBlockAssetResourceLoaderDelegate alloc] init];
 }
 
-%hook modMethod
+%hook LiveDotIndicatorView
 // - (id)RightLeadingText {
 //   [self setHidden:YES];
 //   return %orig;
@@ -299,43 +299,25 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 %end
 
 %ctor {
-    %init(modMethod = objc_getClass("Twitch.LiveDotIndicatorView"));
+    %init(LiveDotIndicatorView = objc_getClass("Twitch.LiveDotIndicatorView"));
 }
 
-%hook UIViewController
-- (void)viewDidAppear:(BOOL)animated {
-    %orig;
-    for (UIView *v in self.view.subviews) {
-        if ([NSStringFromClass([v class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
-            v.hidden = YES;
-    }
-}
+%hook TheaterViewController
+- (void)viewDidAppear:(bool)arg {
+    %orig(arg);
+
 %end
+
+%ctor {
+    %init(modMethod = objc_getClass("Twitch.TheaterViewController"));
+}
 
 %hook UIView
-- (void)didAddSubview:(UIView *)subview {
-    %orig;
-    if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
-        subview.hidden = YES;
-}
-- (void)setNeedsLayout {
-    %orig;
-    if ([NSStringFromClass([self class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
-        self.hidden = YES;
-}
-- (void)willMoveToWindow:(UIWindow *)newWindow {
-    %orig;
-    if (newWindow && [NSStringFromClass([self class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
-        self.hidden = YES;
-}
-%end
 
-%hook UITableViewCell
-- (void)prepareForReuse {
-    %orig;
-    for (UIView *v in self.contentView.subviews) {
-        if ([NSStringFromClass([v class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
-            v.hidden = YES;
+- (void)didAddSubview:(UIView *)subview {
+    %orig(subview);
+    NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
+    if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"]) {
+        subview.hidden = YES;
     }
 }
-%end
