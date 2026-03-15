@@ -279,11 +279,11 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 //   [self setHidden:YES];
 //   // %orig;
 // }
-- (void)drawRect:(CGRect)rect {
-  [self setHidden:YES];
-  %orig;
-  [self setHidden:YES];
-}
+// - (void)drawRect:(CGRect)rect {
+//   [self setHidden:YES];
+//   %orig;
+//   [self setHidden:YES];
+// }
 // - (void)layoutIfNeeded {
 //   [self setHidden:YES];
 //   // %orig;
