@@ -302,15 +302,15 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
     %init(LiveDotIndicatorView = objc_getClass("Twitch.LiveDotIndicatorView"));
 }
 
-%hook TheaterViewController
-- (void)viewDidAppear:(bool)arg {
-    %orig(arg);
+// %hook TheaterViewController
+// - (void)viewDidAppear:(bool)arg {
+//     %orig(arg);
+// }
+// %end
 
-%end
-
-%ctor {
-    %init(modMethod = objc_getClass("Twitch.TheaterViewController"));
-}
+// %ctor {
+//     %init(modMethod = objc_getClass("Twitch.TheaterViewController"));
+// }
 
 %hook UIView
 
