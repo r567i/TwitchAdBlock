@@ -259,23 +259,23 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 - (void)didMoveToSuperview {
   [self setHidden:YES];
-  %orig;
+  // %orig;
 }
 - (void)layoutSubviews {
   [self setHidden:YES];
-  %orig;
+  // %orig;
 }
 - (void)drawRect:(CGRect)rect {
   [self setHidden:YES];
-  %orig;
+  // %orig;
 }
 - (void)layoutIfNeeded {
   [self setHidden:YES];
-  %orig;
+  // %orig;
 }
 - (void)updateConstraints {
   [self setHidden:YES];
-  %orig;
+  // %orig;
 }
 %end
 
