@@ -285,7 +285,7 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   [self setHidden:YES];
   %orig;
   [self setHidden:YES];
-  for (UIView *v in self.subviews) {
+  for (UIView *v in self.view.subviews) {
     NSLog(@"check_class_name: %s", class_getName(object_getClass(v)));
   }
 }
