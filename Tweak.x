@@ -301,3 +301,41 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 %ctor {
     %init(modMethod = objc_getClass("Twitch.LiveDotIndicatorView"));
 }
+
+%hook UIViewController
+- (void)viewDidAppear:(BOOL)animated {
+    %orig;
+    for (UIView *v in self.view.subviews) {
+        if ([NSStringFromClass([v class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
+            v.hidden = YES;
+    }
+}
+%end
+
+%hook UIView
+- (void)didAddSubview:(UIView *)subview {
+    %orig;
+    if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
+        subview.hidden = YES;
+}
+- (void)setNeedsLayout {
+    %orig;
+    if ([NSStringFromClass([self class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
+        self.hidden = YES;
+}
+- (void)willMoveToWindow:(UIWindow *)newWindow {
+    %orig;
+    if (newWindow && [NSStringFromClass([self class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
+        self.hidden = YES;
+}
+%end
+
+%hook UITableViewCell
+- (void)prepareForReuse {
+    %orig;
+    for (UIView *v in self.contentView.subviews) {
+        if ([NSStringFromClass([v class]) isEqualToString:@"Twitch.LiveDotIndicatorView"])
+            v.hidden = YES;
+    }
+}
+%end
