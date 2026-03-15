@@ -296,6 +296,12 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   %orig;
   [self setHidden:YES];
 }
+
+- (void)didAddSubviews:(id)subview {
+  %orig(subview);
+  NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
+  [self setHidden:YES];
+}
 %end
 
 %ctor {
@@ -312,13 +318,13 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 //     %init(modMethod = objc_getClass("Twitch.TheaterViewController"));
 // }
 
-%hook UIView
-- (void)didAddSubview:(UIView *)subview {
-    %orig(subview);
-    NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
-    if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"]) {
-        subview.hidden = YES;
-        [subview setHidden:YES];
-    }
-}
-%end
+// %hook UIView
+// - (void)didAddSubview:(UIView *)subview {
+//     %orig(subview);
+//     NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
+//     if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"]) {
+//         subview.hidden = YES;
+//         [subview setHidden:YES];
+//     }
+// }
+// %end
