@@ -245,7 +245,7 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 // }
 - (void)didMoveToSuperview {
   // [self setHidden:YES];
-  // %orig;
+  %orig;
   // [self setHidden:YES];
   [self performSelector:@selector(removeFromSuperview)];
 }
@@ -262,7 +262,7 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 - (void)layoutIfNeeded {
   // [self setHidden:YES];
-  // %orig;
+  %orig;
   // [self setHidden:YES];
   [self performSelector:@selector(removeFromSuperview)];
 }
