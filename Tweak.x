@@ -239,43 +239,16 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 
 %hook LiveDotIndicatorView
-// - (id)RightLeadingText {
-//   [self setHidden:YES];
-//   return %orig;
-// }
-// - (id)RightLeadingAttributedText {
-//   [self setHidden:YES];
-//   return %orig;
-// }
-// - (void)setRightLeadingText:(id)arg {
-//   [self setHidden:YES];
-// }
-// - (void)setRightLeadingAttributedText:(id)arg {
-//   [self setHidden:YES];
-// }
-// - (id)LeftLeadingText {
-//   [self setHidden:YES];
-//   return %orig;
-// }
-// - (id)LeftLeadingAttributedText {
-//   [self setHidden:YES];
-//   return %orig;
-// }
-// - (void)setLeftLeadingText:(id)arg {
-//   [self setHidden:YES];
-// }
-// - (void)setLeftLeadingAttributedText:(id)arg {
-//   [self setHidden:YES];
-// }
 // - (id)initWithFrame:(CGRect)frame {
 //   [self setHidden:YES];
 //   return %orig;
 // }
-// - (void)didMoveToSuperview {
-//   [self setHidden:YES];
-//   %orig;
-//   [self setHidden:YES];
-// }
+- (void)didMoveToSuperview {
+  // [self setHidden:YES];
+  // %orig;
+  // [self setHidden:YES];
+  [self performSelector:@selector(removeFromSuperview)];
+}
 // - (void)layoutSubviews {
 //   [self setHidden:YES];
 //   %orig;
@@ -287,11 +260,12 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   // [self setHidden:YES];
   [self performSelector:@selector(removeFromSuperview)];
 }
-// - (void)layoutIfNeeded {
-//   [self setHidden:YES];
-//   %orig;
-//   [self setHidden:YES];
-// }
+- (void)layoutIfNeeded {
+  // [self setHidden:YES];
+  // %orig;
+  // [self setHidden:YES];
+  [self performSelector:@selector(removeFromSuperview)];
+}
 // - (void)updateConstraints {
 //   [self setHidden:YES];
 //   %orig;
