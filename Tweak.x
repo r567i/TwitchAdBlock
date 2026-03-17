@@ -297,3 +297,12 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 //     }
 // }
 // %end
+
+%hook UILabel
+- (void)setText:(NSString *)text {
+    if ([text containsString:@"viewers"]) {
+        text = [text stringByReplacingOccurrencesOfString:@"viewers" withString:@""];
+    }
+    %orig(text);
+}
+%end
