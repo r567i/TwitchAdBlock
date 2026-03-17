@@ -274,7 +274,10 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 %end
 
 %ctor {
-    %init(LiveDotIndicatorView = objc_getClass("Twitch.LiveDotIndicatorView"));
+    %init(
+      LiveDotIndicatorView = objc_getClass("Twitch.LiveDotIndicatorView"),
+      ThumbnailContentTypeLabel = objc_getClass("TwitchCoreUI.ThumbnailContentTypeLabel")
+    );
 }
 
 // %hook TheaterViewController
@@ -324,6 +327,6 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 }
 %end
 
-%ctor {
-    %init(ThumbnailContentTypeLabel = objc_getClass("TwitchCoreUI.ThumbnailContentTypeLabel"));
-}
+// %ctor {
+//     %init(ThumbnailContentTypeLabel = objc_getClass("TwitchCoreUI.ThumbnailContentTypeLabel"));
+// }
