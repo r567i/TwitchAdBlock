@@ -238,44 +238,44 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   assetResourceLoaderDelegate = [[TWAdBlockAssetResourceLoaderDelegate alloc] init];
 }
 
-%hook LiveDotIndicatorView
-- (id)initWithFrame:(CGRect)frame {
-  [self setHidden:YES];
-  return %orig;
-}
-- (void)didMoveToSuperview {
-  [self setHidden:YES];
-  %orig;
-  [self setHidden:YES];
-  // [self performSelector:@selector(removeFromSuperview)];
-}
-- (void)layoutSubviews {
-  [self setHidden:YES];
-  %orig;
-  [self setHidden:YES];
-}
-- (void)drawRect:(CGRect)rect {
-  // [self setHidden:YES];
-  // %orig;
-  // [self setHidden:YES];
-  [self performSelector:@selector(removeFromSuperview)];
-}
-- (void)layoutIfNeeded {
-  [self setHidden:YES];
-  %orig;
-  [self setHidden:YES];
-  // [self performSelector:@selector(removeFromSuperview)];
-}
-- (void)updateConstraints {
-  [self setHidden:YES];
-  %orig;
-  [self setHidden:YES];
-}
-%end
+// %hook LiveDotIndicatorView
+// - (id)initWithFrame:(CGRect)frame {
+//   [self setHidden:YES];
+//   return %orig;
+// }
+// - (void)didMoveToSuperview {
+//   [self setHidden:YES];
+//   %orig;
+//   [self setHidden:YES];
+//   // [self performSelector:@selector(removeFromSuperview)];
+// }
+// - (void)layoutSubviews {
+//   [self setHidden:YES];
+//   %orig;
+//   [self setHidden:YES];
+// }
+// - (void)drawRect:(CGRect)rect {
+//   // [self setHidden:YES];
+//   // %orig;
+//   // [self setHidden:YES];
+//   [self performSelector:@selector(removeFromSuperview)];
+// }
+// - (void)layoutIfNeeded {
+//   [self setHidden:YES];
+//   %orig;
+//   [self setHidden:YES];
+//   // [self performSelector:@selector(removeFromSuperview)];
+// }
+// - (void)updateConstraints {
+//   [self setHidden:YES];
+//   %orig;
+//   [self setHidden:YES];
+// }
+// %end
 
 %ctor {
     %init(
-      LiveDotIndicatorView = objc_getClass("Twitch.LiveDotIndicatorView"),
+      // LiveDotIndicatorView = objc_getClass("Twitch.LiveDotIndicatorView"),
       // ThumbnailContentTypeLabel = objc_getClass("TwitchCoreUI.ThumbnailContentTypeLabel")
       ContentOverlayView = objc_getClass("Twitch.ContentOverlayView")
     );
