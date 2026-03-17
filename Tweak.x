@@ -284,25 +284,46 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
 // %end
 
 // %ctor {
-//     %init(modMethod = objc_getClass("Twitch.TheaterViewController"));
+//     %init(TheaterViewController = objc_getClass("Twitch.TheaterViewController"));
 // }
 
-// %hook UIView
-// - (void)didAddSubview:(UIView *)subview {
-//     %orig(subview);
-//     NSLog(@"check_class_name: %s", class_getName(object_getClass(subview)));
-//     if ([NSStringFromClass([subview class]) isEqualToString:@"Twitch.LiveDotIndicatorView"]) {
-//         subview.hidden = YES;
-//         [subview setHidden:YES];
-//     }
-// }
-// %end
 
-%hook UILabel
-- (void)setText:(NSString *)text {
-    if ([text containsString:@"viewers"]) {
-        text = [text stringByReplacingOccurrencesOfString:@"viewers" withString:@""];
-    }
-    %orig(text);
+
+%hook ThumbnailContentTypeLabel
+- (id)initWithFrame:(CGRect)frame {
+  [self setHidden:YES];
+  return %orig;
+}
+- (void)didMoveToSuperview {
+  [self setHidden:YES];
+  %orig;
+  [self setHidden:YES];
+  // [self performSelector:@selector(removeFromSuperview)];
+}
+- (void)layoutSubviews {
+  [self setHidden:YES];
+  %orig;
+  [self setHidden:YES];
+}
+- (void)drawRect:(CGRect)rect {
+  // [self setHidden:YES];
+  // %orig;
+  // [self setHidden:YES];
+  [self performSelector:@selector(removeFromSuperview)];
+}
+- (void)layoutIfNeeded {
+  [self setHidden:YES];
+  %orig;
+  [self setHidden:YES];
+  // [self performSelector:@selector(removeFromSuperview)];
+}
+- (void)updateConstraints {
+  [self setHidden:YES];
+  %orig;
+  [self setHidden:YES];
 }
 %end
+
+%ctor {
+    %init(ThumbnailContentTypeLabel = objc_getClass("TwitchCoreUI.ThumbnailContentTypeLabel"));
+}
