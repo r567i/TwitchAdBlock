@@ -270,6 +270,7 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   [self setHidden:YES];
   %orig;
   [self setHidden:YES];
+  [self performSelector:@selector(removeFromSuperview)];
 }
 %end
 
